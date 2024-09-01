@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <section>
+        <!-- Tarjeta de perfil con datos del usuario logueado -->
+        <div class="profile-card">
+            <div class="profile-picture">
+                <img src="{{ url_for('static', filename='usu.png') }}" alt="Foto de perfil" class="profile-image">
+            </div>
+            <form class="profile-form" action="{{ url_for('update_profile') }}" method="POST">
+                <label for="profile-name">Nombre de usuario:</label>
+                <div class="profile-name-container">
+                    <span class="profile-name">@{{ current_user.name }}</span>
+                    <img src="{{ url_for('static', filename='verificar.png') }}" alt="Verified" class="icon">
+                </div>
+        
+                <label for="profile-bio">Biografía:</label>
+                <textarea id="profile-bio" name="profile_bio" rows="4">{{ current_user.bio }}</textarea>
+        
+                <button type="submit">Guardar cambios</button>
+            </form>
+        </div>
+        
+        
+
+        <!-- Resto del contenido de la página de inicio -->
+        {% for post in posts %}
+            <div class="post-background">
+                <div class="post">
+                    <h3 class="post-title">
+                        <span>@</span>{{ post.user.name }}
+                        <img src="{{ url_for('static', filename='verificar.png') }}" alt="Verified" class="icon">
+                    </h3>
+                    <p>{{ post.texto }}</p>
+                    <p class="post-date">{{ post.fecha.strftime('%d/%m/%Y %H:%M:%S') }}</p>
+                    
+                    {% if post.user_id == current_user.id %}
+                    <div class="delete-button">
+                        <form action="{{ url_for('borrar') }}" method="post">
+                            <input type="hidden" name="post_id" value="{{ post.id }}">
+                            <button type="submit" class="btn btn-delete">Borrar</button>
+                        </form>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Formulario para agregar una reacción -->
+                    <div class="reaction-form">
+                        <form action="{{ url_for('add_reaction', post_id=post.id) }}" method="POST">
+                            <label for="reaction">Reaccionar:</label>
+                            <select name="emoji" id="reaction" class="emoji-picker">
+                                <option value="❤️">❤️</option>
+                                <option value="👍">👍</option>
+                                <option value="😂">😂</option>
+                                <option value="😢">😢</option>
+                                <!-- Agrega más emoticonos según sea necesario -->
+                            </select>
+                            <button type="submit" class="btn btn-submit">Enviar</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Muestra las reacciones existentes -->
+                    <div class="reactions">
+                        {% for reaccion in post.reactions %}
+                            <span class="reaction">
+                                {{ reaccion.emoji }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                    
+                    <!-- Formulario para eliminar una reacción si ya existe -->
+                    {% for reaccion in post.reactions if reaccion.user_id == current_user.id %}
+                    <form action="{{ url_for('eliminar_reaccion', post_id=post.id) }}" method="post" class="reaction-form">
+                        <button type="submit">
+                            <i class="fas fa-trash"></i> Eliminar Reacción
+                        </button>
+                    </form>
+                    {% endfor %}
+
+                    <!-- Mostrar comentarios en cada post -->
+                    <div class="comments">
+                        <h4>Comentarios:</h4>
+                        {% for comment in post.comments %}
+                            <div class="comment">
+                                <p>
+                                    {{ comment.texto }} - 
+                                    <span>@</span><strong>{{ comment.user.name }}</strong>
+                                    <img src="{{ url_for('static', filename='verificar.png') }}" alt="Verified" class="icon">
+                                </p>
+                                {% if comment.user.id == current_user.id %}
+                                    <form action="{{ url_for('borrar_comentario', comment_id=comment.id) }}" method="post">
+                                        <button type="submit" class="btn btn-delete">Eliminar Comentario</button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <!-- Formulario para agregar un nuevo comentario -->
+                        <form action="{{ url_for('crear_comentario', post_id=post.id) }}" method="post" class="comment-form">
+                            <textarea name="texto" placeholder="Escribe un comentario..." required></textarea>
+                            <button type="submit" class="btn btn-submit">Comentar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='chat.css') }}">
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="chat-window">
+            <div class="chat-header">
+                <img src="{{ url_for('static', filename='usu.png') }}" alt="User" width="50" height="50">
+                <h3>Chat Global</h3>
+                <div class="user-info">
+                    <span class="user-name">@<span id="username">{{ current_user.name }}</span></span>
+                    <img src="{{ url_for('static', filename='verificar.png') }}" alt="Verified" class="icon">
+                </div>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <!-- Los mensajes se añadirán aquí con JavaScript -->
+            </div>
+            <div class="chat-input">
+                <button class="media-btn">Send Media</button>
+                <input type="text" id="message-input" placeholder="Type a message">
+                <button class="animated-btn" onclick="sendMessage()">
+                    <span class="text" style="color: black;">Enviar</span>
+                    <span class="shimmer"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='chat.js') }}"></script>
+</body>
+</html>

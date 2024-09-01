@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h2>Escribe tu publicación</h2>
+
+<form class="tweet-form" action="{{ url_for('crear_post') }}" method="post">
+    <!-- Campo de título que muestra el nombre de usuario con un "@" y está deshabilitado -->
+    <input type="text" name="titulo" value="{{ username }}" readonly>
+
+    <textarea name="texto" cols="30" rows="10" placeholder="Escribe tu publicación aquí..." required></textarea>
+
+    <input type="submit" value="Publicar">
+</form>
+
+{% endblock %}

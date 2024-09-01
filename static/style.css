@@ -1,0 +1,466 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+/* Estilo base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: #a3a3a3; /* Fondo gris para la página */
+    margin: 0;
+    padding: 0;
+}
+
+
+/* NAV BAR */
+.main-head {
+    background: #0d0d0d;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    width: 100%;
+    font-family: 'Fredoka One', sans-serif; 
+    z-index: 1000;
+    top: 0;
+}
+
+nav {
+    min-height: 10vh;
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem 2rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#logo {
+    font-size: 3rem;
+    display: flex;
+}
+
+#logo span {
+    position: relative;
+    top: 0;
+    animation: move 0.5s ease-in-out infinite alternate;
+    animation-delay: calc(var(--i) * 0.15s);
+}
+
+@keyframes move {
+    100% {
+        top: -30px;
+        text-shadow: 0 3px red, 
+                     0 6px grey, 
+                     0 9px gold, 
+                     0 11px green, 
+                     0 13px purple, 
+                     0 14px cyan, 
+                     0 15px orangered;
+    }
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 1.5rem;
+}
+
+nav ul li a {
+    color: white;
+    font-size: 1.8rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* FORMULARIO */
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 3vh;
+    color: #1da1f2; /* Color azul característico de Twitter */
+}
+
+.tweet-form {
+    margin: 3vh auto;
+    width: 90%;
+    max-width: 600px;
+    background-color: #ffffff; /* Fondo blanco */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    padding: 1.5rem; /* Espaciado interno */
+    border: 1px solid #e1e8ed; /* Borde sutil */
+}
+
+.tweet-form input[type="text"],
+.tweet-form textarea {
+    width: calc(100% - 20px); /* Ajusta el ancho para el padding */
+    padding: 10px;
+    font-size: 1.6rem;
+    border-radius: 5px;
+    border: 1px solid #e1e8ed; /* Borde sutil */
+    margin-bottom: 1rem;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Sombra interna para darle profundidad */
+    font-family: Arial, sans-serif; /* Fuente similar a la de Twitter */
+}
+
+.tweet-form input[type="submit"] {
+    background-color: #1da1f2; /* Fondo azul de Twitter */
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 1.6rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición suave */
+}
+
+.tweet-form input[type="submit"]:hover {
+    background-color: #1991db; /* Color azul más oscuro al pasar el ratón */
+}
+
+/* PUBLICACIONES */
+/* PUBLICACIONES */
+/* PUBLICACIONES */
+section {
+    margin: 15vh auto 3vh; /* Ajustado para evitar que la barra de navegación tape los posts */
+    width: 90%;
+    max-width: 600px;
+    background-color: #a3a3a3; /* Fondo gris para las publicaciones */
+    border: 1px solid #6e6d6d; /* Borde sutil */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para profundidad */
+    padding: 1.5rem; /* Espaciado interno */
+    margin-bottom: 1rem; /* Espacio inferior entre publicaciones */
+    font-family: 'Fredoka One', sans-serif; 
+}
+
+.post {
+    width: 100%; /* Asegúrate de que cada post ocupe todo el ancho disponible */
+    max-width: 100%; /* Evita que los posts se extiendan más allá del ancho del contenedor */
+    font-size: 1.8rem; /* Tamaño del texto */
+    color: #333; /* Un color más oscuro para mejor contraste */
+    line-height: 1.6; /* Mejora el espaciado entre líneas */
+    padding: 15px; /* Añade un poco de espacio alrededor del texto */
+    background-color: #f9f9f9; /* Un fondo claro para destacar el texto */
+    border: 5px solid #ddd; /* Un borde sutil alrededor del post */
+    border-radius: 25px; /* Bordes redondeados para un diseño más suave */
+    margin-bottom: 1rem; /* Espacio entre los posts */
+    font-family: 'Fredoka One', sans-serif; /* Fuente como en el navbar */
+}
+.post-title {
+    font-size: 1.6rem; /* Tamaño más grande para el título */
+    color: #222; /* Un color aún más oscuro para el título */
+    font-weight: bold; /* Hace que el título sea negrita */
+    margin-bottom: 10px; /* Espacio debajo del título */
+    display: flex;
+    align-items: center;
+}
+
+.post-title span {
+    margin-right: 0.5rem; /* Espacio entre el arroba y el nombre */
+}
+
+.post-title .verified-icon {
+    display: inline-block;
+    width: 1.4rem; /* Tamaño del ícono */
+    height: 1.4rem;
+    margin-left: 0.5rem;
+    background: url('{{ url_for('static', filename='verificar.png') }}') no-repeat center center;
+    background-size: contain;
+}
+
+
+/* MENSAJES */
+.message {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #424242;
+    background-color: #303030; /* Fondo gris oscuro */
+    border-radius: 10px; /* Bordes redondeados para los mensajes */
+    margin-bottom: 1rem; /* Espacio entre mensajes */
+}
+
+.message img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.message-content {
+    flex: 1;
+}
+
+.message-content h3 {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 1.6rem; /* Tamaño de fuente del nombre */
+}
+
+.message-content p {
+    margin: 0;
+    font-size: 1.4rem; /* Tamaño de fuente del mensaje */
+}
+
+.date {
+    font-size: 1.2rem;
+    color: #757575;
+    text-align: right;
+    margin-left: 10px; /* Espacio entre el mensaje y la fecha */
+}
+
+.star {
+    color: #ffc107;
+    font-size: 1.8rem;
+    margin-left: auto;
+}
+
+/* BOTÓN DE BORRAR */
+.delete-button {
+    display: flex;
+    justify-content: flex-end; /* Alinea el botón a la derecha */
+    margin-top: 1rem;
+}
+
+.delete-button button {
+    background-color: #0051ff; /* Color azul para el botón de borrar */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.4rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición suave para el color */
+}
+
+.delete-button button:hover {
+    background-color: #003bb5; /* Color azul más oscuro al pasar el ratón */
+}
+
+/* ESTILO PARA REACCIONES */
+.reactions {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid #e1e8ed;
+    border-radius: 5px;
+    background-color: #f5f8fa;
+}
+
+.reaction {
+    font-size: 2rem; /* Tamaño del emoticono */
+    margin-right: 1rem; /* Espacio entre emoticonos */
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.reaction:hover {
+    transform: scale(1.2); /* Aumenta el tamaño al pasar el ratón */
+    background-color: #e1e8ed; /* Fondo gris claro al pasar el ratón */
+    border-radius: 50%; /* Bordes redondeados para los emoticonos */
+}
+
+.reaction-form {
+    margin-top: 1rem;
+}
+
+.reaction-form select,
+.reaction-form button {
+    font-size: 1.6rem;
+}
+
+.reaction-form select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #e1e8ed;
+}
+
+.reaction-form button {
+    background-color: #0051ff; /* Color azul para el botón de eliminar */
+    color: white;
+    border: none;
+    padding: 8px 15px; /* Ajusta el padding para un buen tamaño */
+    font-size: 1.4rem;
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
+    display: flex;
+    align-items: center; /* Centra el icono y el texto */
+}
+
+.reaction-form button:hover {
+    background-color: #e60000; /* Color rojo más oscuro al pasar el ratón */
+    transform: scale(1.05); /* Ligeramente aumenta el tamaño del botón */
+}
+
+.reaction-form button i {
+    margin-right: 0.5rem; /* Espacio entre el icono y el texto */
+    font-size: 1.6rem; /* Tamaño del icono */
+}
+
+.icon {
+    width: 22px; /* Ajusta el tamaño según sea necesario */
+    height: auto; /* Mantiene la proporción del ícono */
+    margin-right: 8px; /* Espacio entre el ícono y el texto */
+    vertical-align: middle; /* Alinea verticalmente con el texto */
+}
+
+
+/* Estilo para los comentarios */
+.comments {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f0f2f5; /* Fondo gris claro para la sección de comentarios */
+    border-radius: 8px;
+}
+
+.comment {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff; /* Fondo blanco para cada comentario */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.comment p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.comment strong {
+    color: #1877f2; /* Color azul para el nombre del usuario */
+}
+
+/* Estilo para el formulario de comentarios */
+.comment-form {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    resize: vertical;
+}
+
+.comment-form button {
+    align-self: flex-end;
+    background-color: #1877f2; /* Azul Facebook para el botón */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.comment-form button:hover {
+    background-color: #165eab; /* Color más oscuro al pasar el ratón */
+}
+
+/* Estilo para botones de eliminar comentario */
+.btn-delete {
+    background-color: #f02849; /* Rojo Facebook para el botón de eliminar */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #c8102e; /* Color más oscuro al pasar el ratón */
+}
+
+.profile-card {
+    background-color: #fff;
+    border-radius: 15px; /* Aumenta el radio del borde */
+    padding: 30px; /* Aumenta el relleno */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Aumenta la sombra */
+    text-align: center;
+    position: fixed; /* Fija la tarjeta en una posición específica */
+    right: 20px; /* Mueve la tarjeta 20px desde el borde derecho del contenedor */
+    top: 125px; /* Ajusta la posición vertical para bajarla más */
+    width: 350px; /* Aumenta el ancho de la tarjeta */
+    z-index: 1000; /* Asegura que la tarjeta esté sobre otros elementos */
+    font-family: 'Fredoka One', sans-serif; 
+}
+
+.profile-name-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.profile-name {
+    font-size: 24px; /* Tamaño del texto del nombre */
+    margin-right: 10px; /* Espacio entre el nombre y el ícono */
+    font-weight: bold; /* Opcional: hace el texto más prominente */
+}
+
+
+.profile-name-container .icon {
+    width: 30px; /* Ajusta el tamaño del ícono */
+    height: 30px; /* Asegura que el ícono sea cuadrado */
+    vertical-align: middle; /* Alinea verticalmente el ícono con el texto */
+}
+.profile-form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.profile-form textarea {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+.profile-form button {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.profile-form button:hover {
+    background-color: #0056b3;
+}
+.profile-image {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}

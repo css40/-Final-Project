@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Flask Blog</title>
+</head>
+<body>
+    <header class="main-head">
+        <nav>
+            <h1 id="logo">
+                <span style="--i: 1">F</span>
+                <span style="--i: 2">l</span>
+                <span style="--i: 3">a</span>
+                <span style="--i: 4">s</span>
+                <span style="--i: 5">k</span>
+                <span style="--i: 6">&nbsp;</span>
+                <span style="--i: 7">B</span>
+                <span style="--i: 8">l</span>
+                <span style="--i: 9">o</span>
+                <span style="--i: 10">g</span>
+            </h1>
+            <ul>
+                <li><a href="{{ url_for('agregar') }}">Agregar</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('inicio') }}">Inicio</a></li>
+                    <li><a href="{{ url_for('chat_global') }}">Chat Global</a></li> <!-- Actualizado -->
+                    <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <div id="content">
+        {% block body %}
+        {% endblock %}
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emoji-picker/1.0.0/js/emoji-picker.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const picker = new EmojiPicker({
+                trigger: '#emoji-picker',
+                onSelect: function(emoji) {
+                    console.log('Emoji seleccionado:', emoji);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
